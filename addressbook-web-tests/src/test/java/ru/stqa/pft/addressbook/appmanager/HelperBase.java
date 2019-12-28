@@ -1,10 +1,12 @@
 package ru.stqa.pft.addressbook.appmanager;
 
+import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.NoAlertPresentException;
 import org.openqa.selenium.chrome.ChromeDriver;
 
 public class HelperBase {
+  private boolean acceptNextAlert = true;
   protected ChromeDriver wd;
 
   public HelperBase(ChromeDriver wd) {
@@ -26,6 +28,21 @@ public class HelperBase {
       return true;
     } catch (NoAlertPresentException e) {
       return false;
+    }
+  }
+
+  protected String closeAlertAndGetItsText() {
+    try {
+      Alert alert = wd.switchTo().alert();
+      String alertText = alert.getText();
+      if (acceptNextAlert) {
+        alert.accept();
+      } else {
+        alert.dismiss();
+      }
+      return alertText;
+    } finally {
+      acceptNextAlert = true;
     }
   }
 }
