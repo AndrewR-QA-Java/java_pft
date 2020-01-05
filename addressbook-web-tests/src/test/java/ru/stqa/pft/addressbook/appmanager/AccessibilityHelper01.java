@@ -12,18 +12,18 @@ public class AccessibilityHelper01 extends HelperBase01 {
   }
 
   public void fillSearchRequest(String query) {
-    type(By.cssSelector("input[name=\'q\']"), query);
+    type(By.cssSelector("input[name='q']"), query);
   }
 
   public void submitSearchRequest() {
-    sendKeyToElement(By.cssSelector("input[name=\'q\']"), Keys.ENTER);
+    sendKeyToElement(By.cssSelector("input[name='q']"), Keys.ENTER);
   }
 
   public void selectFirstResult() {
-    click(By.xpath("//*/text()[normalize-space(.)='Topdanmark Forsikring og Pension']/parent::*"));
+    click(By.cssSelector(("h3.LC20lb")));
   }
 
   public void validateTheResult(String validation_string) {
-    Assert.assertEquals(wd.findElement(By.xpath("(//a[contains(@href, 'https://mit.topdanmark.dk/forside')])[2]")).getText(), validation_string);
+    Assert.assertEquals(wd.findElement(By.cssSelector("li > a.btn.btn-login.btn-primary")).getText(), validation_string);
   }
 }
