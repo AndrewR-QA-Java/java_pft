@@ -26,10 +26,10 @@ public class ApplicationManager {
       wd = new ChromeDriver();
     } else if (browser.equals(BrowserType.FIREFOX)) {
       wd = new FirefoxDriver();
-    } else if (browser.equals(BrowserType.EDGE)){
+    } else if (browser.equals(BrowserType.EDGE)) {
       wd = new EdgeDriver();
-  }
-    wd.manage().timeouts().implicitlyWait(60, TimeUnit.SECONDS);
+    }
+    wd.manage().timeouts().implicitlyWait(0, TimeUnit.SECONDS);
     wd.get("http://localhost/addressbook");
     groupHelper = new GroupHelper(wd);
     contactHelper = new ContactHelper(wd);

@@ -6,10 +6,13 @@ import ru.stqa.pft.addressbook.model.ContactData;
 public class ContactModificationTests extends TestBase {
   @Test
   public void testContactModification() {
+    if (!app.getContactHelper().isThereAContact()) {
+      app.getContactHelper().createContact(new ContactData("ivan", "ivanov", null, null, null, "test2"));
+    }
     app.getContactHelper().selectContact();
     app.getContactHelper().initContactModification();
-    app.getContactHelper().fillContactForm(new ContactData("Ivan1", "Ivanov1", "777333222", "email@email.com", "Pushkina street 1"));
+    app.getContactHelper().fillContactForm(new ContactData("Ivan1", "Ivanov1", "777333222", "email@email.com", "Pushkina street 1", null), false);
     app.getContactHelper().submitContactModification();
-    app.getContactHelper().returnToContactPage();
+    app.getNavigationHelper().gotoHomePage();
   }
 }
