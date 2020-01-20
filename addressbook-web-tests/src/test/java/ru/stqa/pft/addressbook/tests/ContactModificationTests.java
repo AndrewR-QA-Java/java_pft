@@ -4,7 +4,8 @@ import org.testng.annotations.Test;
 import ru.stqa.pft.addressbook.model.ContactData;
 
 public class ContactModificationTests extends TestBase {
-  @Test
+
+  @Test(enabled=false)
   public void testContactModification() {
     if (!app.getContactHelper().isThereAContact()) {
       app.getContactHelper().createContact(new ContactData("ivan", "ivanov", null, null, null, "test2"));

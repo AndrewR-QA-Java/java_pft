@@ -5,7 +5,7 @@ import ru.stqa.pft.addressbook.model.ContactData;
 
 public class ContactCreationTests extends TestBase {
 
-  @Test
+  @Test(enabled=false)
   public void testContactCreation() throws Exception {
     app.getContactHelper().initContactCreation();
     if (app.getGroupHelper().isThereAGroupForContact()) {
