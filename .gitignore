@@ -16,3 +16,8 @@ sandbox/out/test/classes/ru/stqa/pft/sandbox/SquareTests.class
 sandbox/out/test/classes/ru/stqa/pft/sandbox/PointTests.class
 sandbox/out/production/classes/ru/stqa/pft/sandbox/MyFirstProgram.class
 sandbox/out/production/classes/ru/stqa/pft/sandbox/DistanceCalculation.class
+addressbook-web-tests/msedgedriver.exe
+addressbook-web-tests/src/test/java/ru/stqa/pft/addressbook/appmanager/AccessibilityHelper01.java
+addressbook-web-tests/src/test/java/ru/stqa/pft/addressbook/tests/TestBase01.java
+addressbook-web-tests/src/test/java/ru/stqa/pft/addressbook/appmanager/AccessibilityHelper01.java
+addressbook-web-tests/src/test/java/ru/stqa/pft/addressbook/tests/TestBase01.java
