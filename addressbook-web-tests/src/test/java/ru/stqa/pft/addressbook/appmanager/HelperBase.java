@@ -57,8 +57,4 @@ public class HelperBase {
       return false;
     }
   }
-
-  public boolean isThereAGroupForContact() {
-    return isElementPresent(By.xpath("//*[@name=\"new_group\"]//option[2]"));
-  }
 }
