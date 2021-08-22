@@ -1,68 +1,99 @@
 package ru.stqa.pft.addressbook.model;
 
-import java.util.Objects;
+import org.hibernate.annotations.Type;
 
+import javax.persistence.*;
+import java.util.HashSet;
+import java.util.Set;
+
+@Entity
+@Table(name = "group_list")
 public class GroupData {
-  private int id = Integer.MAX_VALUE;
-  private String name;
-  private String header;
-  private String footer;
+    @Id
+    @Column(name = "group_id")
+    private int id = Integer.MAX_VALUE;
 
-  public GroupData withId(int id) {
-    this.id = id;
-    return this;
-  }
+    @Column(name = "group_name")
+    private String name;
 
-  public GroupData withName(String name) {
-    this.name = name;
-    return this;
-  }
+    @Column(name = "group_header")
+    @Type(type = "text")
+    private String header;
 
-  public GroupData withHeader(String header) {
-    this.header = header;
-    return this;
-  }
+    @Column(name = "group_footer")
+    @Type(type = "text")
+    private String footer;
 
-  public GroupData withFooter(String footer) {
-    this.footer = footer;
-    return this;
-  }
+    public Contacts getContacts() {
+        return new Contacts(contacts);
+    }
 
-  public int getId() {
-    return id;
-  }
+    @ManyToMany(mappedBy = "groups")
+    private Set<ContactData> contacts = new HashSet<ContactData>();
 
-  public String getName() {
-    return name;
-  }
+    public int getId() {
+        return id;
+    }
 
-  public String getHeader() {
-    return header;
-  }
+    public GroupData withId(int id) {
+        this.id = id;
+        return this;
+    }
 
-  public String getFooter() {
-    return footer;
-  }
+    public GroupData withName(String name) {
+        this.name = name;
+        return this;
+    }
 
-  @Override
-  public String toString() {
-    return "GroupData{" +
-            "name='" + name + '\'' +
-            ", id=" + id +
-            '}';
-  }
+    public GroupData withHeader(String header) {
+        this.header = header;
+        return this;
+    }
 
-  @Override
-  public boolean equals(Object o) {
-    if (this == o) return true;
-    if (o == null || getClass() != o.getClass()) return false;
-    GroupData groupData = (GroupData) o;
-    return id == groupData.id &&
-            Objects.equals(name, groupData.name);
-  }
+    public GroupData withFooter(String footer) {
+        this.footer = footer;
+        return this;
+    }
 
-  @Override
-  public int hashCode() {
-    return Objects.hash(id, name);
-  }
+    public String getName() {
+        return name;
+    }
+
+    public String getHeader() {
+        return header;
+    }
+
+    public String getFooter() {
+        return footer;
+    }
+
+    @Override
+    public String toString() {
+        return "GroupData{" +
+                "id='" + id + '\'' +
+                ", name='" + name + '\'' +
+                '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        GroupData groupData = (GroupData) o;
+
+        if (id != groupData.id) return false;
+        if (name != null ? !name.equals(groupData.name) : groupData.name != null) return false;
+        if (header != null ? !header.equals(groupData.header) : groupData.header != null) return false;
+        return footer != null ? footer.equals(groupData.footer) : groupData.footer == null;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = id;
+        result = 31 * result + (name != null ? name.hashCode() : 0);
+        result = 31 * result + (header != null ? header.hashCode() : 0);
+        result = 31 * result + (footer != null ? footer.hashCode() : 0);
+        return result;
+    }
 }
